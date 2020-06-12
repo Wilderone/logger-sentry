@@ -1,8 +1,9 @@
 import os
 import random
 import messages as m
+import logger
 
-from bottle import route, run
+from bottle import route, run, request
 
 
 def generate_message():
@@ -10,7 +11,8 @@ def generate_message():
 
 
 @route("/api/generate/")
-def one_message():
+def default_message():
+    logger.LOG.info(request.headers.get('User-Agent'))
     onem = m.Declar()
     return onem.return_declar()
 
@@ -19,6 +21,7 @@ def one_message():
 def one_message(num):
     onem = m.Declar(num)
     return onem.return_declar()
+
 
 @route("/")
 def index():
@@ -40,8 +43,6 @@ def index():
         generate_message()
     )
     return html
-
-
 
 
 if os.environ.get("APP_LOCATION") == "heroku":
