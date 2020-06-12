@@ -19,7 +19,7 @@ def generate_message():
 @route('/fail')
 def fail_con():
     raise RuntimeError("There is an error!")
-    return
+    return 'Error ocuired. Log of this exception goes to Sentry.io'
 
 
 @route('/success')
