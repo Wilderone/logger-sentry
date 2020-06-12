@@ -2,12 +2,29 @@ import os
 import random
 import messages as m
 import logger
-
+import sentry_sdk
 from bottle import route, run, request
+from sentry_sdk.integrations.bottle import BottleIntegration
+
+sentry_sdk.init(
+    dsn='https://ef5a158203e64c699f3e3437ec67cb9c@o406684.ingest.sentry.io/5274617',
+    integrations=[BottleIntegration()]
+)
 
 
 def generate_message():
     return "use api"
+
+
+@route('/fail')
+def fail_con():
+    raise RuntimeError("There is an error!")
+    return
+
+
+@route('/success')
+def success():
+    return 'ok'
 
 
 @route("/api/generate/")
