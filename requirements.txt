@@ -2,4 +2,3 @@ bottle
 gunicorn
 logger
 sentry_sdk
-sentry_sdk.integrations.bottle
