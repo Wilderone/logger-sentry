@@ -24,7 +24,7 @@ def fail_con():
 
 @route('/success')
 def success():
-    return 'ok'
+    return
 
 
 @route("/api/generate/")
